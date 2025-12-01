@@ -560,7 +560,7 @@
     // })
 
     // let vadjust = dy + offsets.final().at(page_num, default: (:)).at(str(index), default: 0pt)
-    let vadjust = dy + dbg.at(str(index), default: 0pt)
+    let vadjust = dy + dbg.at(str(index), default: 0pt) + .65em
 
     // box(width: 0pt, place(box(fill: yellow, width: 1cm, text(size: 5pt)[#anchor.y + #vadjust = #(anchor.y + vadjust)])))
 
@@ -570,7 +570,8 @@
 
     // box(width: 0pt, place(box(fill: yellow, width: 1cm, text(size: 5pt)[#get-right().width])))
 
-    box(width: 0pt, place(dx: hadjust, dy: vadjust, notebox))
+    // box(width: 0pt, place(dx: hadjust, dy: vadjust, notebox))
+    place(dx: hadjust, dy: vadjust, notebox)
   }
 )
 
@@ -761,6 +762,7 @@
     }
     let dy = dy - dy-adjust
 
+    if anchor-numbering != none {
     h(0pt, weak: true)
     box({
       if anchor-numbering != none {
@@ -781,6 +783,9 @@
       }
       place-note(side: side, dy: dy, keep-order: keep-order, shift: shift, body)
     })
+    } else {
+      place-note(side: side, dy: dy, keep-order: keep-order, shift: shift, body)
+    }
   }
 }
 
